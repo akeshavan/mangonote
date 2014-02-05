@@ -1,0 +1,10 @@
+<div>
+	<div ng-show='editorEnabled'>
+		<textarea class='MdPreview-markdown form-control' name='{{textareaName}}' ng-model='markdown' ng-change='md2Html()'></textarea>
+		<a href='#' ng-click='save()'><span class='glyphicon glyphicon-ok'></span></a>
+		<a href='#' ng-click='disableEditor()'><span class='glyphicon glyphicon-remove'></span></a>
+	</div>
+	
+	<div class='MdPreview-html' ng-click='enableEditor()' ng-bind-html='htmlSafe' />	
+	</div>
+</div>

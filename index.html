@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header" ng-controller="ClickToEditCtrl">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+    <!--EDIT TITLE HERE-->
+    <div ng-hide="editorEnabled">
+      <a class="navbar-brand" href="#" ng-click="enableEditor()">{{title}}</a>
+      <a href="#" ng-click="enableEditor()"></a>
+   </div>
+
+    <div ng-show="editorEnabled">
+      <form class="navbar-form" ng-enter="save"><input class="form-control" ng-model="editableTitle" ng-show="editorEnabled" type="text">
+      <a href="#" ng-click="save()"><span class="glyphicon glyphicon-ok"></span></a>
+      <a href="#" ng-click="disableEditor()"><span class="glyphicon glyphicon-remove"></span></a></form>
+    </div>
+
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search">
+          </form>
+        </div>
+      </div>
+    </div>
+ 
+<div class="container-fluid" ng-controller="SidebarCtrl">
+	<div class="row">
+	  <div class="col-sm-3 col-md-2 sidebar" ng-model-instant>
+		<ul class="nav nav-sidebar" id="myTab">
+		  <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+		  <li ng-repeat="bar in sidebars">
+			  <a href="#{{bar.href}}" data-toggle="tab">{{bar.title}}</a>
+		  </li>
+		</ul>
+		<button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+			<span class="glyphicon glyphicon-plus"></span> Add Section
+		</button>
+	  </div>
+
+	</div> <!--End Row-->    
+
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+	  <div class="tab-content" ng-model-instant>
+		  
+		  <div class="tab-pane active" id="overview">
+			  <h1 class="page-header">Overview</h1>
+		  </div>
+		  <div ng-repeat="bar in sidebars" class="tab-pane" id="{{bar.href}}">
+			  <h1 class="page-header"><span contentEditable="true" ng-model="bar.title">{{bar.title}}</span>
+			  
+			  <div class="btn-group">
+			    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			      Add Content <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+			      <li><a href="#" ng-click="addText($index)">Text</a></li>
+				  <li><a href="#" ng-click="addText($index)">Image</a></li>
+				  <li class="divider"></li>
+			      <li><a href="#" ng-click="recordId($index)">d3 bar graph</a></li>
+			      <li><a href="#" ng-click="recordId($index)">d3 brush chart </a></li>
+			      <li><a href="#" ng-click="recordId($index)">d3 chord diagram</a></li>
+				  <li class="divider"></li>
+				  <li><a href="#" ng-click="recordId($index)">iPython Notebook</a></li>
+			    </ul>
+			  </div>
+			  <button class="btn btn-danger" ng-click=deleteSection($index)>Delete</button>
+			  <!--<button class="btn btn-primary" ng-click="recordId($index)">Add Content</button>-->
+			  
+			  </h1>
+			  <!--TODO: Right now, content is just a text. But lets make it a list of dicts
+			  Then, we add another ng-repeat, with a conditional statement: if b.type == "text"
+			  then add a div with our contentEditable. If its an iPython notebook, add a directive
+			  for the IPython notebook render. If its a d3 thing, add a directive w/ the appropriate
+			  d3 template! (The d3 stuff can have a templateURL so neeraj can drop in d3 templates!)
+			   -->
+			  <div contentEditable="false" ng-repeat="li in bar.content" ng-model="li.text" class='iiMdPreview' text="{{li.text}}" ng-model-instant>
+				  
+			  </div>
+			  
+		  </div> <!--  ng-repeat: bar in sidebars  -->
+      
+	  </div> <!--tab content-->
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Add Section</h4>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" ng-model="sectionName" type="text">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" ng-click="addSection()" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="js/marked.js"></script>
+<script src="js/markdown_preview.js"></script>
+<script src="js/angular-sanitize.js"></script>
+<script src="js/app.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+<script src="js/bootstrap.js"></script>
+
+
+
+</body>
+</html>
