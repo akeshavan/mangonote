@@ -49,8 +49,8 @@
 <div class="container-fluid" ng-controller="SidebarCtrl">
 	<div class="row">
 	  <div class="col-sm-3 col-md-2 sidebar" ng-model-instant>
-		<ul class="nav nav-sidebar" id="myTab">
-		  <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+		<ul class="nav nav-sidebar" id="myTab" dnd-list="sidebars">
+		  <!--<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>-->
 		  <li ng-repeat="bar in sidebars">
 			  <a href="#{{bar.href}}" data-toggle="tab">{{bar.title}}</a>
 		  </li>
@@ -66,9 +66,9 @@
 
 	  <div class="tab-content" ng-model-instant>
 		  
-		  <div class="tab-pane active" id="overview">
+		  <!--<div class="tab-pane active" id="overview">
 			  <h1 class="page-header">Overview</h1>
-		  </div>
+		  </div>-->
 		  <div ng-repeat="bar in sidebars" class="tab-pane" id="{{bar.href}}">
 			  <h1 class="page-header"><span contentEditable="true" ng-model="bar.title">{{bar.title}}</span>
 			  
@@ -144,6 +144,7 @@
 <script src="js/angular-sanitize.js"></script>
 <script src="js/app.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+<script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
 
 
