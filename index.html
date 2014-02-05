@@ -94,10 +94,14 @@
 			  Then, we add another ng-repeat, with a conditional statement: if b.type == "text"
 			  then add a div with our contentEditable. If its an iPython notebook, add a directive
 			  for the IPython notebook render. If its a d3 thing, add a directive w/ the appropriate
-			  d3 template! (The d3 stuff can have a templateURL so neeraj can drop in d3 templates!)
+			  d3 template! (The d3 stuff can have a templateUrl so neeraj can drop in d3 templates!)
 			   -->
-			  <div contentEditable="false" ng-repeat="li in bar.content" ng-model="li.text" class='iiMdPreview' text="{{li.text}}" ng-model-instant>
-				  
+			  <div ng-repeat="li in bar.content" ng-model-instant>
+				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
+					  <a href="#" ng-click="remove($parent.$index,$index)"><span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span></a>
+					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}"></div>
+				  </div>
+                 
 			  </div>
 			  
 		  </div> <!--  ng-repeat: bar in sidebars  -->

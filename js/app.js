@@ -51,6 +51,14 @@ $scope.addText = function(idx){
 	
 }
 
+$scope.remove = function(idx_parent,idx){
+	$scope.sidebars[idx_parent].content.splice(idx,1)
+}
+
+$scope.showTrash = function(){
+	$scope.showtrash=true
+}
+
 $scope.deleteSection = function(idx){
 	console.log(idx)
 	console.log($scope.sidebars.length)
