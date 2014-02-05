@@ -24,7 +24,7 @@ myApp.controller("ClickToEditCtrl", function($scope) {
 myApp.controller("SidebarCtrl", function($scope){
 
 	//This will be loaded from a json file
-$scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", text:"**hello!**\n\nThis is markdown!"}]},
+$scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", text:"**hello!**\n\nThis is markdown!"},{type:"image", data:"img/placeholder.png"}]},
                    {"title":"Analytics","href":"Analytics","content":[{type:"text", text:"**analystics**\n\n* This is markdown!"}]},
                    {"title":"Export","href":"Export","content":[{type:"text", text:"**export yay**\n\n* This is markdown!"}]}]
 
@@ -48,6 +48,13 @@ $scope.addText = function(idx){
 	
 	console.log($scope.sidebars[idx].content)
 	$scope.sidebars[idx].content.push({type:"text", text:"Edit Me"})
+	
+}
+
+$scope.addImage = function(idx){
+	
+	console.log($scope.sidebars[idx].content)
+	$scope.sidebars[idx].content.push({type:"image", data:""})
 	
 }
 
@@ -109,3 +116,72 @@ myApp.directive('contenteditable', function() {
     };
 });
 
+myApp.directive('imageDir', function(){
+  // The above name 'myDirective' will be parsed out as 'my-directive'
+  // for in-markup uses.
+  return {
+    // restrict to an element (A = attribute, C = class, M = comment)
+    // or any combination like 'EACM' or 'EC'
+    restrict: 'E',
+    scope: {
+      name: '@', // set the name on the directive's scope
+                    // to the name attribute on the directive element.
+	  data: '=ngModel',
+	  //exist_uri: '@'
+    },
+    //the template for the directive.
+    templateUrl: '/templates/img.html',
+    //the controller for the directive
+    /*controller: function($scope) {
+      $scope.validateImage = function(){
+		  if ($scope.data){
+			  console.log("data in validation"+$scope.data)
+		$scope.data = $scope.data_tmp
+	}
+		else{
+			$scope.data="img/placeholder.png"
+		}
+		$scope.exist_uri=true
+      };
+
+    },*/
+    replace: true, //replace the directive element with the output of the template.
+    //the link method does the work of setting the directive
+    // up, things like bindings, jquery calls, etc are done in here
+    link: function(scope, elem, attr) {
+      // scope is the directive's scope,
+      // elem is a jquery lite (or jquery full) object for the directive root element.
+      // attr is a dictionary of attributes on the directive element.
+
+	  elem.bind('dblclick', function() {
+        scope.exist_uri = false;
+        scope.$apply();
+      });
+
+	  if (!scope.data & scope.data != undefined){
+		  scope.exist_uri = false
+		  scope.data = "img/placeholder.png"
+		  scope.data_tmp = "img/placeholder.png"
+	  }
+	  else{
+		  console.log("uri already exists")
+		  scope.exist_uri=true
+		  scope.data_tmp = scope.data
+	  }
+	  
+	  scope.$watch("exist_uri", function(value) {
+		  if (!value && value != undefined){
+			  console.log($("#"+scope.name))
+	          $("#"+scope.name).modal("show")
+	              }
+			  });
+
+	  scope.$watch("data", function(value) {
+		  if (!value && value != undefined){
+			  scope.data = "img/placeholder.png"
+	              }
+			  });
+			  
+    }
+  };
+});

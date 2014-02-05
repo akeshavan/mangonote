@@ -77,7 +77,7 @@
 			    </button>
 			    <ul class="dropdown-menu" role="menu">
 			      <li><a href="#" ng-click="addText($index)">Text</a></li>
-				  <li><a href="#" ng-click="addText($index)">Image</a></li>
+				  <li><a href="#" ng-click="addImage($index)">Image</a></li>
 				  <li class="divider"></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 bar graph</a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 brush chart </a></li>
@@ -98,8 +98,14 @@
 			   -->
 			  <div ng-repeat="li in bar.content" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
-					  <a href="#" ng-click="remove($parent.$index,$index)"><span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span></a>
-					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}"></div>
+					  <a href="#" ng-click="remove($parent.$index,$index)">
+						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
+					  </a>
+					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}">
+					  </div>
+					  <image-dir ng-if="li.type=='image'" ng-model="li.data"
+					   name="image_{{$parent.$index}}_{{$index}}">
+					  </image-dir>
 				  </div>
                  
 			  </div>
