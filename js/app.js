@@ -98,6 +98,18 @@ $scope.showTrash = function(){
 	$scope.showtrash=true
 }
 
+$scope.setAllInactive = function() {
+        angular.forEach($scope.sidebars, function(sidebar) {
+            sidebar.class = "";
+        });
+    };
+
+$scope.set_active = function(idx){
+	$scope.setAllInactive()
+	$scope.sidebars[idx].class="active"
+	
+}
+
 $scope.deleteSection = function(idx){
 	console.log(idx)
 	console.log($scope.sidebars.length)

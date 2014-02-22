@@ -54,7 +54,7 @@
 		<ul class="nav nav-sidebar" id="myTab" dnd-list="sidebars">
 		  <!--<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>-->
 		  <li ng-repeat="bar in sidebars">
-			  <a href="#{{bar.href}}" data-toggle="tab" class="{{bar.class}}">{{bar.title}}</a>
+			  <a href="#{{bar.href}}" data-toggle="tab" class="{{bar.class}}" ng-click="set_active($index)">{{bar.title}}</a>
 			  
 		  </li>
 		</ul>
