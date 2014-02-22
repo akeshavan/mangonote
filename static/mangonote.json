@@ -1,0 +1,44 @@
+{
+    "sidebars": [
+        {
+            "$$hashKey": "004", 
+            "content": [
+                {
+                    "$$hashKey": "00D", 
+                    "text": "###MangoNote is an flexible notebook with d3 visualizations", 
+                    "type": "text"
+                }, 
+                {
+                    "$$hashKey": "00H", 
+                    "text": "Double-click this text to edit. Use **Markdown** to format your text!\n\n* Click \"Add Content\" then \"text\" to add another text box\n\n* Click \"Add Content\" then \"Image\" to add an image!", 
+                    "type": "text"
+                }, 
+                {
+                    "$$hashKey": "00L", 
+                    "data": "img/mangonote-logo-prototype.png", 
+                    "type": "image"
+                }, 
+                {
+                    "$$hashKey": "00F", 
+                    "text": "### Click \"Add Section\" on the left to create a new section!\n\n* You can change the section title by clicking it\n\n* You can change the section order by clicking and dragging on the left", 
+                    "type": "text"
+                }
+            ], 
+            "href": "Reports", 
+            "title": "Welcome to MangoNote!"
+        }, 
+        {
+            "$$hashKey": "00I", 
+            "content": [
+                {
+                    "$$hashKey": "00L", 
+                    "text": "## I just added this section!\n\nWill the cache work?\n\n####The cache works!!", 
+                    "type": "text"
+                }
+            ], 
+            "href": "New-Section", 
+            "title": "New Section"
+        }
+    ], 
+    "title": "mangonote"
+}

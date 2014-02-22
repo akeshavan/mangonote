@@ -1,41 +1,61 @@
 var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview']);
 
-
-
-myApp.controller("ClickToEditCtrl", function($scope) {
-	// default should be from a json file
-  $scope.title = "mangonote";
-  $scope.editorEnabled = false;
-  
-  $scope.enableEditor = function() {
-    $scope.editorEnabled = true;
-    $scope.editableTitle = $scope.title;
-  };
-  
-  $scope.disableEditor = function() {
-    $scope.editorEnabled = false;
-  };
-  
-  $scope.save = function() {
-    $scope.title = $scope.editableTitle;
-    $scope.disableEditor();
-  };
-})
-
 myApp.controller("SidebarCtrl", function($scope){
 
-	//This will be loaded from a json file
-$scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", text:"**hello!**\n\nThis is markdown!"},{type:"image", data:"img/placeholder.png"}]},
-                   {"title":"Analytics","href":"Analytics","content":[{type:"text", text:"**analystics**\n\n* This is markdown!"}]},
-                   {"title":"Export","href":"Export","content":[{type:"text", text:"**export yay**\n\n* This is markdown!"}]}]
+    foo = $.ajax({
+    cache: false,
+    url: "/static/mangonote.json",
+    dataType: "json",
+    success: function(data) {
+		console.log(foo)
+		data = foo.responseJSON
+		$scope.title = data.title;
+		$scope.sidebars = data.sidebars;
+      }
+    });
+	
+	
+	//$.getJSON("/static/mangonote.json", function(json){
+//		console.log(foo)
+//		data = foo.responseJSON
+//		$scope.title = data.title;
+//		$scope.sidebars = data.sidebars;
+//    })
+	//console.log(foo)
+	//console.log(foo.responseJSON)
+	
+	//$scope.title = "mangonote";
 
+	//This will be loaded from a json file
+    //$scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", text:"**hello!**\n\nThis is markdown!"},{type:"image", data:"img/placeholder.png"}]},
+    //               {"title":"Analytics","href":"Analytics","content":[{type:"text", text:"**analystics**\n\n* This is markdown!"}]},
+    //               {"title":"Export","href":"Export","content":[{type:"text", text:"**export yay**\n\n* This is markdown!"}]}]
+
+
+
+
+    $scope.editorEnabled = false;
+  
+    $scope.enableEditor = function() {
+      $scope.editorEnabled = true;
+      $scope.editableTitle = $scope.title;
+    };
+  
+    $scope.disableEditor = function() {
+      $scope.editorEnabled = false;
+    };
+  
+    $scope.save = function() {
+      $scope.title = $scope.editableTitle;
+      $scope.disableEditor();
+    };
 
 $scope.addSection = function (){
 	href = $scope.sectionName.replace(" ","-")
 	console.log(href)
 	$scope.sidebars.push({"title":$scope.sectionName, 
 	                       "href":href, 
-						   "content":""})
+						   "content":[]})
 						   
 }
 
@@ -84,6 +104,26 @@ $scope.deleteSection = function(idx){
     console.log($scope.sidebars.length)
 	$('#myTab a:first').tab('show')
 }
+
+
+$scope.save_note_handler = function(){
+	
+	allData = {title:$scope.title, sidebars:JSON.stringify($scope.sidebars)}
+	console.log(allData)
+	$.ajax( {
+	      type: "POST",
+	      url: "/save_note",
+	      data: allData,
+		  traditional:true,
+	      success: function( response ) {
+	        console.log( response )},
+		  data: allData,
+		  dataType: 'json', 
+		  //contentType: 'application/json; charset=utf-8'
+	      
+	    } );
+}
+
 
 })
 
