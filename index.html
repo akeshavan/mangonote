@@ -49,7 +49,7 @@
 <div class="container-fluid" ng-controller="SidebarCtrl">
 	<div class="row">
 	  <div class="col-sm-3 col-md-2 sidebar" ng-model-instant>
-		<ul class="nav nav-sidebar" id="myTab" ><!--dnd-list="sidebars">-->
+		<ul class="nav nav-sidebar" id="myTab" dnd-list="sidebars">
 		  <!--<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>-->
 		  <li ng-repeat="bar in sidebars">
 			  <a href="#{{bar.href}}" data-toggle="tab">{{bar.title}}</a>
