@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview']);
+var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview','monospaced.elastic']);
 
 myApp.controller("SidebarCtrl", function($scope){
 
@@ -51,7 +51,7 @@ myApp.controller("SidebarCtrl", function($scope){
 	$scope.addText = function(idx){
 	
 		console.log($scope.sidebars[idx].content)
-		$scope.sidebars[idx].content.push({type:"text", text:"Edit Me"})
+		$scope.sidebars[idx].content.push({type:"text", text:"Edit Me", class:""})
 	
 	}
 

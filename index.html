@@ -101,7 +101,7 @@
 			  d3 template! (The d3 stuff can have a templateUrl so neeraj can drop in d3 templates!)
 			   -->
 			<div dnd-div="bar.content">
-			  <div ng-repeat="li in bar.content" ng-model-instant>
+			  <div ng-repeat="li in bar.content track by $index" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
 					  <a href="#" ng-click="remove($parent.$index,$index)">
 						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
@@ -146,6 +146,7 @@
 <script src="js/marked.js"></script>
 <script src="js/markdown_preview.js"></script>
 <script src="js/angular-sanitize.js"></script>
+<script src="js/elastic.js"></script>
 <script src="js/app.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
 <script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
