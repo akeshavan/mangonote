@@ -2,7 +2,7 @@
     "sidebars": [
         {
             "$$hashKey": "004", 
-            "class": "", 
+            "class": "active", 
             "content": [
                 {
                     "$$hashKey": "00D", 
@@ -35,7 +35,7 @@
         }, 
         {
             "$$hashKey": "00I", 
-            "class": "active", 
+            "class": "", 
             "content": [
                 {
                     "$$hashKey": "00L", 

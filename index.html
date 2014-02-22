@@ -100,6 +100,7 @@
 			  for the IPython notebook render. If its a d3 thing, add a directive w/ the appropriate
 			  d3 template! (The d3 stuff can have a templateUrl so neeraj can drop in d3 templates!)
 			   -->
+			<div dnd-div="bar.content">
 			  <div ng-repeat="li in bar.content" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
 					  <a href="#" ng-click="remove($parent.$index,$index)">
@@ -113,7 +114,7 @@
 				  </div>
                  
 			  </div>
-			  
+		    </div>
 		  </div> <!--  ng-repeat: bar in sidebars  -->
       
 	  </div> <!--tab content-->
