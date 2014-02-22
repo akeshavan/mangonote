@@ -5,6 +5,7 @@
   <title>mangonote</title>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
   <script src="js/angular.min.js"></script>
   <link rel="shortcut icon" href="img/favicon.ico">
 </head>
@@ -144,6 +145,7 @@
 
 
 <script src="js/marked.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script src="js/markdown_preview.js"></script>
 <script src="js/angular-sanitize.js"></script>
 <script src="js/elastic.js"></script>
@@ -153,8 +155,12 @@
 <script src="js/bootstrap.js"></script>
 
 <script>
-$(document).ready(function() {
-  $.ajaxSetup({ cache: false });
+// Synchronous highlighting with highlight.js
+marked.setOptions({
+  highlight: function (code) {
+	  console.log("in highlight")
+    return hljs.highlightAuto(code).value;
+  }
 });
 </script>
 

@@ -59,7 +59,7 @@ class SaveHandler(tornado.web.RequestHandler):
         print "will save %s"%filename
         info = self.get_argument('sidebars')
         info = tornado.escape.json_decode(info)
-        print info
+        
         print "will save %s"%filename
         
         save_json("static/%s.json"%filename.replace(" ","_"),

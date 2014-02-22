@@ -13,7 +13,7 @@
                 {
                     "$$hashKey": "00H", 
                     "class": "", 
-                    "text": "Double-click this text to edit. Use **Markdown** to format your text!\n\n* Click \"Add Content\" then \"text\" to add another text box\n\n* Click \"Add Content\" then \"Image\" to add an image!\n\n* After Editing text, press **Shift+Enter** to save and exit edit mode!", 
+                    "text": "Double-click this text to edit. Use **Markdown** to format your text!\n\n* Click \"Add Content\" then \"text\" to add another text box\n\n* Click \"Add Content\" then \"Image\" to add an image!\n\n* After Editing text, press **Shift+Enter** to save and exit edit mode!\n\n```ruby\nrequire 'redcarpet'\nmarkdown = Redcarpet.new(\"Hello World!\")\nputs markdown.to_html\n```", 
                     "type": "text"
                 }, 
                 {
