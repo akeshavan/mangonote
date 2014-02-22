@@ -9,12 +9,17 @@
 	        <h4 class="modal-title" id="myModalLabel">Add Image</h4>
 	      </div>
 	      <div class="modal-body">
+              <input type="file" ng-model-instant id="fileToUpload" name="{{name}}Upload" onchange="angular.element(this).scope().setFiles(this)" />
+			  
 			Link:
 			<input type="text" class="form-control" id="{{name}}URL" text="{{data}}" ng-model="data_tmp"/>
 	      </div>
 	      <div class="modal-footer">
+			  
+  			<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="exist_uri=true;data=data_tmp">Add Link</button>
+			<button type="button" class="btn btn-success" data-dismiss="modal" ng-click="exist_uri=true;data=data_upload">Upload File</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="exist_uri=true">Cancel</button>
-	        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="exist_uri=true;data=data_tmp">Add</button>
+	        
 	      </div>
 	    </div>
 	  </div>

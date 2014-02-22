@@ -14,26 +14,6 @@ myApp.controller("SidebarCtrl", function($scope){
 		console.log($('#'+$scope.sidebars[0].href));
       }
     });
-	
-	//$('#'+$scope.sidebars[0].href).tab('show');
-	//$.getJSON("/static/mangonote.json", function(json){
-//		console.log(foo)
-//		data = foo.responseJSON
-//		$scope.title = data.title;
-//		$scope.sidebars = data.sidebars;
-//    })
-	//console.log(foo)
-	//console.log(foo.responseJSON)
-	
-	//$scope.title = "mangonote";
-
-	//This will be loaded from a json file
-    //$scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", text:"**hello!**\n\nThis is markdown!"},{type:"image", data:"img/placeholder.png"}]},
-    //               {"title":"Analytics","href":"Analytics","content":[{type:"text", text:"**analystics**\n\n* This is markdown!"}]},
-    //               {"title":"Export","href":"Export","content":[{type:"text", text:"**export yay**\n\n* This is markdown!"}]}]
-
-
-
 
     $scope.editorEnabled = false;
   
@@ -51,91 +31,83 @@ myApp.controller("SidebarCtrl", function($scope){
       $scope.disableEditor();
     };
 
-$scope.addSection = function (){
-	href = $scope.sectionName.replace(" ","-")
-	console.log(href)
-	$scope.sidebars.push({"title":$scope.sectionName, 
-	                       "href":href, 
-						   "content":[]})
+	$scope.addSection = function (){
+		href = $scope.sectionName.replace(" ","-")
+		console.log(href)
+		$scope.sidebars.push({"title":$scope.sectionName, 
+		                       "href":href, 
+							   "content":[]})
 						   
-}
+	}
 
-$scope.random = function(){
-	var rand = 'xxxxxxxx'.replace(/[xy]/g, function(c) {
-	    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-	    return v.toString(16);
-	});
-	console.log(rand)
-		return "rand"
-}
 
-$scope.recordId = function(id){
+	$scope.recordId = function(id){
 	
-	currentPage = $scope.sidebars[id]
-	console.log(currentPage)
+		currentPage = $scope.sidebars[id]
+		console.log(currentPage)
 
-}
+	}
 
-$scope.addText = function(idx){
+	$scope.addText = function(idx){
 	
-	console.log($scope.sidebars[idx].content)
-	$scope.sidebars[idx].content.push({type:"text", text:"Edit Me"})
+		console.log($scope.sidebars[idx].content)
+		$scope.sidebars[idx].content.push({type:"text", text:"Edit Me"})
 	
-}
+	}
 
-$scope.addImage = function(idx){
-	console.log(idx)
-	console.log("add_image",$scope.sidebars[idx].content)
-	$scope.sidebars[idx].content.push({type:"image", data:""})
+	$scope.addImage = function(idx){
+		console.log(idx)
+		console.log("add_image",$scope.sidebars[idx].content)
+		$scope.sidebars[idx].content.push({type:"image", data:""})
 	
-}
+	}
 
-$scope.remove = function(idx_parent,idx){
-	$scope.sidebars[idx_parent].content.splice(idx,1)
-}
+	$scope.remove = function(idx_parent,idx){
+		$scope.sidebars[idx_parent].content.splice(idx,1)
+	}
 
-$scope.showTrash = function(){
-	$scope.showtrash=true
-}
+	$scope.showTrash = function(){
+		$scope.showtrash=true
+	}
 
-$scope.setAllInactive = function() {
-        angular.forEach($scope.sidebars, function(sidebar) {
-            sidebar.class = "";
-        });
-    };
+	$scope.setAllInactive = function() {
+	        angular.forEach($scope.sidebars, function(sidebar) {
+	            sidebar.class = "";
+	        });
+	    };
 
-$scope.set_active = function(idx){
-	$scope.setAllInactive()
-	$scope.sidebars[idx].class="active"
+	$scope.set_active = function(idx){
+		$scope.setAllInactive()
+		$scope.sidebars[idx].class="active"
 	
-}
+	}
 
-$scope.deleteSection = function(idx){
-	console.log(idx)
-	console.log($scope.sidebars.length)
-	$scope.sidebars.splice(idx,1)
-    console.log($scope.sidebars.length)
-	$('#myTab a:first').tab('show')
-}
+	$scope.deleteSection = function(idx){
+		console.log(idx)
+		console.log($scope.sidebars.length)
+		$scope.sidebars.splice(idx,1)
+	    console.log($scope.sidebars.length)
+		$('#myTab a:first').tab('show')
+	}
 
 
-$scope.save_note_handler = function(){
+	$scope.save_note_handler = function(){
 	
-	allData = {title:$scope.title, sidebars:JSON.stringify($scope.sidebars)}
-	console.log(allData)
-	$.ajax( {
-	      type: "POST",
-	      url: "/save_note",
-	      data: allData,
-		  traditional:true,
-	      success: function( response ) {
-	        console.log( response )},
-		  data: allData,
-		  dataType: 'json', 
-		  //contentType: 'application/json; charset=utf-8'
+		allData = {title:$scope.title, sidebars:JSON.stringify($scope.sidebars)}
+		console.log(allData)
+		$.ajax( {
+		      type: "POST",
+		      url: "/save_note",
+		      data: allData,
+			  traditional:true,
+		      success: function( response ) {
+		        console.log( response )},
+			  data: allData,
+			  dataType: 'json', 
+			  //contentType: 'application/json; charset=utf-8'
 	      
-	    } );
-}
+		    } );
+	}
 
 })
 
@@ -195,19 +167,49 @@ myApp.directive('imageDir', function(){
     //the template for the directive.
     templateUrl: '/templates/img.html',
     //the controller for the directive
-    /*controller: function($scope) {
+    controller: function($scope) {
       $scope.validateImage = function(){
 		  if ($scope.data){
 			  console.log("data in validation"+$scope.data)
-		$scope.data = $scope.data_tmp
-	}
+		      $scope.data = $scope.data_tmp
+	      }
 		else{
 			$scope.data="img/placeholder.png"
-		}
-		$scope.exist_uri=true
+		    }
+	 	$scope.exist_uri=true
       };
 
-    },*/
+	  $scope.setFiles = function(element) {
+	      $scope.$apply(function(scope) {
+	        console.log('files:', element.files);
+	        // Turn the FileList object into an Array
+	          $scope.files = []
+	          for (var i = 0; i < element.files.length; i++) {
+	            $scope.files.push(element.files[i])
+	          }
+	        $scope.progressVisible = false
+			console.log($scope.files)
+			
+			var reader = new FileReader();
+			
+	        reader.onload = (function(theFile) {
+	          return function(e) {
+	            // Render thumbnail.
+	            
+	            console.log("data result: "+e.target.result)
+				$scope.data_upload = e.target.result
+
+	          };
+	        })($scope.files[0]);
+
+	        // Read in the image file as a data URL.
+	        reader.readAsDataURL($scope.files[0]);
+	      }
+	  
+			
+	        )
+	      };
+    },
     replace: true, //replace the directive element with the output of the template.
     //the link method does the work of setting the directive
     // up, things like bindings, jquery calls, etc are done in here
