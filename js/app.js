@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview']);
 
 
+
 myApp.controller("ClickToEditCtrl", function($scope) {
 	// default should be from a json file
   $scope.title = "mangonote";
@@ -28,6 +29,7 @@ $scope.sidebars = [{"title":"Reports","href":"Reports","content":[{type:"text", 
                    {"title":"Analytics","href":"Analytics","content":[{type:"text", text:"**analystics**\n\n* This is markdown!"}]},
                    {"title":"Export","href":"Export","content":[{type:"text", text:"**export yay**\n\n* This is markdown!"}]}]
 
+
 $scope.addSection = function (){
 	href = $scope.sectionName.replace(" ","-")
 	console.log(href)
@@ -35,6 +37,15 @@ $scope.addSection = function (){
 	                       "href":href, 
 						   "content":""})
 						   
+}
+
+$scope.random = function(){
+	var rand = 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+	    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+	    return v.toString(16);
+	});
+	console.log(rand)
+		return "rand"
 }
 
 $scope.recordId = function(id){
@@ -52,8 +63,8 @@ $scope.addText = function(idx){
 }
 
 $scope.addImage = function(idx){
-	
-	console.log($scope.sidebars[idx].content)
+	console.log(idx)
+	console.log("add_image",$scope.sidebars[idx].content)
 	$scope.sidebars[idx].content.push({type:"image", data:""})
 	
 }
@@ -159,7 +170,7 @@ myApp.directive('imageDir', function(){
       });
 
 	  if (!scope.data & scope.data != undefined){
-		  scope.exist_uri = false
+		  scope.exist_uri = true;
 		  scope.data = "img/placeholder.png"
 		  scope.data_tmp = "img/placeholder.png"
 	  }
