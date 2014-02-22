@@ -55,6 +55,17 @@
         }
         scope.textareaName = attrs.textareaName;
 		
+        element.bind('keydown', function(event) {
+          var code = event.keyCode || event.which;
+          if (code === 13) {
+            if (event.shiftKey) {
+			  event.preventDefault();
+			  scope.save()
+              scope.$apply();
+            }
+          }
+        });
+		
       }
     };
   });
