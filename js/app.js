@@ -168,16 +168,6 @@ myApp.directive('imageDir', function(){
     templateUrl: '/templates/img.html',
     //the controller for the directive
     controller: function($scope) {
-      $scope.validateImage = function(){
-		  if ($scope.data){
-			  console.log("data in validation"+$scope.data)
-		      $scope.data = $scope.data_tmp
-	      }
-		else{
-			$scope.data="img/placeholder.png"
-		    }
-	 	$scope.exist_uri=true
-      };
 
 	  $scope.setFiles = function(element) {
 	      $scope.$apply(function(scope) {
