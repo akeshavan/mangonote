@@ -54,7 +54,8 @@
 		<ul class="nav nav-sidebar" id="myTab" dnd-list="sidebars">
 		  <!--<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>-->
 		  <li ng-repeat="bar in sidebars">
-			  <a href="#{{bar.href}}" data-toggle="tab">{{bar.title}}</a>
+			  <a href="#{{bar.href}}" data-toggle="tab" class="{{bar.class}}">{{bar.title}}</a>
+			  
 		  </li>
 		</ul>
 		<button class="btn btn-default" data-toggle="modal" data-target="#myModal">
@@ -71,7 +72,7 @@
 		  <!--<div class="tab-pane active" id="overview">
 			  <h1 class="page-header">Overview</h1>
 		  </div>-->
-		  <div ng-repeat="bar in sidebars" class="tab-pane" id="{{bar.href}}" ng-init="sectionIndex = $index">
+		  <div ng-repeat="bar in sidebars" class="tab-pane {{bar.class}}" id="{{bar.href}}" ng-init="sectionIndex = $index">
 			  <h1 class="page-header"><span contentEditable="true" ng-model="bar.title">{{bar.title}}</span>
 			  
 			  <div class="btn-group">

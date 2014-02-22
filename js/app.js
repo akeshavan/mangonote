@@ -11,10 +11,11 @@ myApp.controller("SidebarCtrl", function($scope){
 		data = foo.responseJSON
 		$scope.title = data.title;
 		$scope.sidebars = data.sidebars;
+		console.log($('#'+$scope.sidebars[0].href));
       }
     });
 	
-	
+	//$('#'+$scope.sidebars[0].href).tab('show');
 	//$.getJSON("/static/mangonote.json", function(json){
 //		console.log(foo)
 //		data = foo.responseJSON
@@ -123,7 +124,6 @@ $scope.save_note_handler = function(){
 	      
 	    } );
 }
-
 
 })
 

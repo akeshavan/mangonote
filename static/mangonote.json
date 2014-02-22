@@ -2,6 +2,7 @@
     "sidebars": [
         {
             "$$hashKey": "004", 
+            "class": "active", 
             "content": [
                 {
                     "$$hashKey": "00D", 
@@ -29,10 +30,16 @@
         }, 
         {
             "$$hashKey": "00I", 
+            "class": "", 
             "content": [
                 {
                     "$$hashKey": "00L", 
                     "text": "## I just added this section!\n\nWill the cache work?\n\n####The cache works!!", 
+                    "type": "text"
+                }, 
+                {
+                    "$$hashKey": "00N", 
+                    "text": "###[This is a link!](http://www.google.com)", 
                     "type": "text"
                 }
             ], 
