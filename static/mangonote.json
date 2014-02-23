@@ -2,7 +2,7 @@
     "sidebars": [
         {
             "$$hashKey": "004", 
-            "class": "active", 
+            "class": "", 
             "content": [
                 {
                     "$$hashKey": "00D", 
@@ -81,6 +81,27 @@
             ], 
             "href": "New-Section", 
             "title": "New Section"
+        }, 
+        {
+            "$$hashKey": "015", 
+            "class": "active", 
+            "content": [
+                {
+                    "data": {
+                        "names": [
+                            "Edit"
+                        ], 
+                        "vals": [
+                            [
+                                "me"
+                            ]
+                        ]
+                    }, 
+                    "type": "table"
+                }
+            ], 
+            "href": "Tables", 
+            "title": "Tables"
         }
     ], 
     "title": "mangonote"

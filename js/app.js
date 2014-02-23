@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview','monospaced.elastic']);
+var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview','monospaced.elastic','xeditable','tableEdit']);
 
 myApp.controller("SidebarCtrl", function($scope){
 
@@ -59,6 +59,13 @@ myApp.controller("SidebarCtrl", function($scope){
 		console.log(idx)
 		console.log("add_image",$scope.sidebars[idx].content)
 		$scope.sidebars[idx].content.push({type:"image", data:""})
+	
+	}
+
+	$scope.addTable = function(idx){
+		console.log("Table added")
+		console.log($scope.sidebars[idx].content)
+		$scope.sidebars[idx].content.push({type:"table", data:{names:["Edit"], vals:[["me"]]}})
 	
 	}
 

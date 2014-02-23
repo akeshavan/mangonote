@@ -83,6 +83,7 @@
 			    <ul class="dropdown-menu" role="menu">
 			      <li><a href="#" ng-click="addText($index)">Text</a></li>
 				  <li><a href="#" ng-click="addImage($index)">Image</a></li>
+				  <li><a href="#" ng-click="addTable($index)">Table</a></li>
 				  <li class="divider"></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 bar graph</a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 brush chart </a></li>
@@ -112,6 +113,8 @@
 					  <image-dir ng-if="li.type=='image'" ng-model="li.data"
 					   name="image_{{sectionIndex}}_{{$index}}">
 					  </image-dir>
+					  <tabler ng-if="li.type=='table'" ng-model="li.data" name="table_{{sectionIndex}}_{{$index}}">
+					  </tabler>
 				  </div>
                  
 			  </div>
@@ -149,7 +152,10 @@
 <script src="js/markdown_preview.js"></script>
 <script src="js/angular-sanitize.js"></script>
 <script src="js/elastic.js"></script>
+<script src="js/xeditable.min.js"></script>
+<script src="js/table.js"></script>
 <script src="js/app.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
 <script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
