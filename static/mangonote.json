@@ -84,7 +84,7 @@
         }, 
         {
             "$$hashKey": "015", 
-            "class": "active", 
+            "class": "", 
             "content": [
                 {
                     "data": {
@@ -118,6 +118,22 @@
             ], 
             "href": "Tables", 
             "title": "Tables and Notebooks"
+        }, 
+        {
+            "$$hashKey": "01L", 
+            "class": "active", 
+            "content": [
+                {
+                    "height": "1000", 
+                    "info": {
+                        "height": "500", 
+                        "url": "https://dl.dropboxusercontent.com/u/9020198/presentations/fMRI.slides.html"
+                    }, 
+                    "type": "ipynb"
+                }
+            ], 
+            "href": "fMRI-Presentation", 
+            "title": "fMRI Presentation"
         }
     ], 
     "title": "mangonote"
