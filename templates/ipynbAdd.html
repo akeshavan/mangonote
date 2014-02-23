@@ -1,5 +1,12 @@
 <div class="row-fluid">
 	<div class="span8">
-	    <iframe ng-src="{{Url}}" frameborder="0" width="100%"></iframe>
-    </div>
+	    <iframe ng-src="{{Url}}" frameborder="0" width="100%" height="{{info.height}}px"></iframe>
+		
+		<button class="btn btn-primary" ng-click="show_ipynb_input=!show_ipynb_input" ng-show="!show_ipynb_input">Edit</button>
+		
+		<label ng-show="show_ipynb_input">Link:</label><input type="text" value="{{info.url}}" ng-show="show_ipynb_input" ng-model="info.url"/>
+		<label ng-show="show_ipynb_input">Height:</label><input type="text" value="{{info.height}}" ng-show="show_ipynb_input" ng-model="info.height"/>
+		<button class="btn btn-primary" ng-show="show_ipynb_input" ng-click="updateipynb();show_ipynb_input=!show_ipynb_input">Go</button>
+    
+	</div>
 </div>

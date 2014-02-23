@@ -74,7 +74,7 @@ myApp.controller("SidebarCtrl", function($scope){
 	$scope.addipynb = function(idx){
 		console.log("ipynbadded")
 		console.log($scope.sidebars[idx].content)
-		$scope.sidebars[idx].content.push({type:"ipynb", url:"http://nbviewer.ipython.org"})
+		$scope.sidebars[idx].content.push({type:"ipynb", info:{url:"http://nbviewer.ipython.org"},height:"1000"})
 	
 	}
 

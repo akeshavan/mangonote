@@ -108,12 +108,16 @@
                     "type": "table"
                 }, 
                 {
-                    "type": "ipynb", 
-                    "url": "http://nbviewer.ipython.org"
+                    "height": "1000", 
+                    "info": {
+                        "height": "22400", 
+                        "url": "http://nbviewer.ipython.org/urls/dl.dropboxusercontent.com/u/9020198/notebooks/fMRI_full01.ipynb"
+                    }, 
+                    "type": "ipynb"
                 }
             ], 
             "href": "Tables", 
-            "title": "Tables"
+            "title": "Tables and Notebooks"
         }
     ], 
     "title": "mangonote"
