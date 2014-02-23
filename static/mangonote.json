@@ -89,12 +89,20 @@
                 {
                     "data": {
                         "names": [
-                            "Edit"
+                            "name", 
+                            "age"
                         ], 
                         "vals": [
-                            [
-                                "me"
-                            ]
+                            {
+                                "$$hashKey": "01G", 
+                                "age": "24", 
+                                "name": "anisha"
+                            }, 
+                            {
+                                "$$hashKey": "01H", 
+                                "age": "22", 
+                                "name": "vidya"
+                            }
                         ]
                     }, 
                     "type": "table"
