@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview','monospaced.elastic','xeditable','tableEdit']);
+var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview',
+                                     'monospaced.elastic','xeditable',
+									 'tableEdit','ipynbAdd']);
 
 myApp.controller("SidebarCtrl", function($scope){
 
@@ -68,6 +70,14 @@ myApp.controller("SidebarCtrl", function($scope){
 		$scope.sidebars[idx].content.push({type:"table", data:{names:["Edit"], vals:[["me"]]}})
 	
 	}
+
+	$scope.addipynb = function(idx){
+		console.log("ipynbadded")
+		console.log($scope.sidebars[idx].content)
+		$scope.sidebars[idx].content.push({type:"ipynb", url:"http://nbviewer.ipython.org"})
+	
+	}
+
 
 	$scope.remove = function(idx_parent,idx){
 		$scope.sidebars[idx_parent].content.splice(idx,1)

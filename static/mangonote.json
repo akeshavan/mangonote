@@ -106,6 +106,10 @@
                         ]
                     }, 
                     "type": "table"
+                }, 
+                {
+                    "type": "ipynb", 
+                    "url": "http://nbviewer.ipython.org"
                 }
             ], 
             "href": "Tables", 

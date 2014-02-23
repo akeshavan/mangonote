@@ -89,7 +89,7 @@
 			      <li><a href="#" ng-click="recordId($index)">d3 brush chart </a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 chord diagram</a></li>
 				  <li class="divider"></li>
-				  <li><a href="#" ng-click="recordId($index)">iPython Notebook</a></li>
+				  <li><a href="#" ng-click="addipynb($index)">iPython Notebook</a></li>
 			    </ul>
 			  </div>
 			  <button class="btn btn-danger pull-right" ng-click=deleteSection($index)>Delete</button>
@@ -115,6 +115,8 @@
 					  </image-dir>
 					  <tabler ng-if="li.type=='table'" ng-model="li.data" name="table_{{sectionIndex}}_{{$index}}">
 					  </tabler>
+					  <ipynb ng-if="li.type=='ipynb'" ng-model="li.url" name="ipynb_{{sectionIndex}}_{{$index}}">
+					  </ipynb>
 				  </div>
                  
 			  </div>
@@ -154,6 +156,7 @@
 <script src="js/elastic.js"></script>
 <script src="js/xeditable.min.js"></script>
 <script src="js/table.js"></script>
+<script src="js/ipynbAdd.js"></script>
 <script src="js/app.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
