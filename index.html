@@ -85,6 +85,7 @@
 				  <li><a href="#" ng-click="addImage($index)">Image</a></li>
 				  <li><a href="#" ng-click="addTable($index)">Table</a></li>
 				  <li class="divider"></li>
+			      <li><a href="#" ng-click="addDonut($index)">d3 donut chart</a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 bar graph</a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 brush chart </a></li>
 			      <li><a href="#" ng-click="recordId($index)">d3 chord diagram</a></li>
@@ -105,7 +106,7 @@
 			<div dnd-div="bar.content">
 			  <div ng-repeat="li in bar.content track by $index" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
-					  <a href="#" ng-click="remove($parent.$index,$index)">
+				  	<a href="#" ng-click="remove($parent.$index,$index)">
 						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
 					  </a>
 					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}">
@@ -117,6 +118,10 @@
 					  </tabler>
 					  <ipynb ng-if="li.type=='ipynb'" ng-model="li.info" name="ipynb_{{sectionIndex}}_{{$index}}">
 					  </ipynb>
+					  <donut-box ng-if="li.type=='donutchart'" name="donutchart_{{sectionIndex}}_{$index}}">
+						</donut-box>
+
+					<!-- <div {{li.type}} ng-model="li.data"></div> -->
 				  </div>
                  
 			  </div>
@@ -163,8 +168,10 @@
 <script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
 
+<!-- Try injecting hljs into angular instead -->
+<!-- https://github.com/pc035860/angular-highlightjs -->
 <script>
-// Synchronous highlighting with highlight.js
+Synchronous highlighting with highlight.js
 marked.setOptions({
   highlight: function (code) {
 	  console.log("in highlight")
