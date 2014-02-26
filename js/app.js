@@ -47,6 +47,8 @@ myApp.controller("SidebarCtrl", function($scope){
 	    success: function(data) {
 			console.log(foo)
 			data = foo.responseJSON
+			$scope.sidebars = [];
+			$scope.$apply();
 			$scope.title = data.title;
 			$scope.sidebars = data.sidebars;
 			console.log($('#'+$scope.sidebars[0].href));
