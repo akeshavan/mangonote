@@ -15,6 +15,9 @@
 			  
 			Link:
 			<input type="text" class="form-control" id="{{name}}URL" text="{{data.data}}" ng-model="data_tmp"/>
+			
+			Size:
+			<input type="text" class="form-control" id="{{name}}URL" text="{{data.size}}" ng-model="data.size"/>
 	      </div>
 	      <div class="modal-footer">
 			  
@@ -27,5 +30,5 @@
 	  </div>
 	</div>
 
-		<div ng-show='exist_uri'><img ng-src="{{data}}" class="img-responsive"></div>
+		<div ng-show='exist_uri'><img ng-src="{{data.data}}" class="img-responsive" width="{{data.size}}%"></div>
 </div>
