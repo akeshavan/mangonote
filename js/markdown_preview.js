@@ -66,6 +66,11 @@
           }
         });
 		
+  	  element.bind('dblclick', function() {
+          scope.enableEditor();
+          scope.$apply();
+        });
+		
       }
     };
   });

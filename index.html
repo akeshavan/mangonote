@@ -73,7 +73,7 @@
 		  <!--<div class="tab-pane active" id="overview">
 			  <h1 class="page-header">Overview</h1>
 		  </div>-->
-		  <div ng-repeat="bar in sidebars" class="tab-pane {{bar.class}}" id="{{bar.href}}" ng-init="sectionIndex = $index">
+		  <div ng-repeat="bar in sidebars track by $index" class="tab-pane {{bar.class}}" id="{{bar.href}}" ng-init="sectionIndex = $index">
 			  <h1 class="page-header"><span contentEditable="true" ng-model="bar.title">{{bar.title}}</span>
 			  
 			  <div class="btn-group">
@@ -96,37 +96,42 @@
 			  <!--<button class="btn btn-primary" ng-click="recordId($index)">Add Content</button>-->
 			  
 			  </h1>
-			  <!--TODO: Right now, content is just a text. But lets make it a list of dicts
-			  Then, we add another ng-repeat, with a conditional statement: if b.type == "text"
-			  then add a div with our contentEditable. If its an iPython notebook, add a directive
-			  for the IPython notebook render. If its a d3 thing, add a directive w/ the appropriate
-			  d3 template! (The d3 stuff can have a templateUrl so neeraj can drop in d3 templates!)
-			   -->
-			<div>
+
+			
 			  <div ng-repeat="li in bar.content track by $index" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
-					  <a href="#" ng-click="remove($parent.$index,$index)">
+					  <!-- MoveUp,MoveDown, and Trash -->
+					  <a href="#" ng-click="remove(sectionIndex,$index)">
 						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
 					  </a>
-					  <a href="#" ng-click="moveUp($parent.$index,$index)">
+					  <a href="#" ng-click="moveUp(sectionIndex,$index)">
 						  <span class="glyphicon glyphicon-arrow-up pull-left" ng-show="showtrash"></span>
 					  </a>
-					  <a href="#" ng-click="moveDown($parent.$index,$index)">
+					  <a href="#" ng-click="moveDown(sectionIndex,$index)">
 						  <span class="glyphicon glyphicon-arrow-down pull-left" ng-show="showtrash"></span>
 					  </a>
+					  
+					  <!-- Text -->
 					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}">
 					  </div>
+					  
+					  <!-- Image -->
 					  <image-dir ng-if="li.type=='image'" ng-model="li.data"
 					   name="image_{{sectionIndex}}_{{$index}}">
 					  </image-dir>
+					  
+					  <!-- Table -->
 					  <tabler ng-if="li.type=='table'" ng-model="li.data" name="table_{{sectionIndex}}_{{$index}}">
 					  </tabler>
+					  
+					  <!-- iFrame -->
 					  <ipynb ng-if="li.type=='ipynb'" ng-model="li.info" name="ipynb_{{sectionIndex}}_{{$index}}">
 					  </ipynb>
+					  
 				  </div>
                  
 			  </div>
-		    </div>
+		    
 		  </div> <!--  ng-repeat: bar in sidebars  -->
       
 	  </div> <!--tab content-->

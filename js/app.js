@@ -95,24 +95,28 @@ myApp.controller("SidebarCtrl", function($scope){
     }
 
 	$scope.remove = function(idx_parent,idx){
+        console.log(idx_parent, idx)
 		$scope.sidebars[idx_parent].content.splice(idx,1)
 	}
 	
 	$scope.moveUp = function(idx_parent,idx){
-		if (idx){
+		console.log("moveUp",idx)
+		if (idx>0){
 			tmp = $scope.sidebars[idx_parent].content[idx-1]
 			$scope.sidebars[idx_parent].content[idx-1] = $scope.sidebars[idx_parent].content[idx]
 			$scope.sidebars[idx_parent].content[idx] = tmp
 		}
+		console.log($scope.sidebars[idx_parent].content)
 	}
 	
 	$scope.moveDown = function(idx_parent,idx){
-		console.log("moveDown",$scope.sidebars[idx_parent].content.length)
-		if (idx < $scope.sidebars[idx_parent].content.length){
+		console.log("moveDown",idx,$scope.sidebars[idx_parent].content.length-1)
+		if (idx < $scope.sidebars[idx_parent].content.length-1){
 			tmp = $scope.sidebars[idx_parent].content[idx+1]
 			$scope.sidebars[idx_parent].content[idx+1] = $scope.sidebars[idx_parent].content[idx]
 			$scope.sidebars[idx_parent].content[idx] = tmp
 		}
+		console.log($scope.sidebars[idx_parent].content)
 	}
 
 	$scope.showTrash = function(){
