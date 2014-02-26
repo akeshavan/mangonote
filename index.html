@@ -98,7 +98,7 @@
 			  </h1>
 
 			
-			  <div ng-repeat="li in bar.content track by $index" ng-model-instant>
+			  <div ng-repeat="li in bar.content" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
 					  <!-- MoveUp,MoveDown, and Trash -->
 					  <a href="#" ng-click="remove(sectionIndex,$index)">
@@ -164,7 +164,7 @@
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script src="js/markdown_preview.js"></script>
 <script src="js/angular-sanitize.js"></script>
-<script src="js/elastic.js"></script>
+<!--<script src="js/elastic.js"></script>-->
 <script src="js/xeditable.min.js"></script>
 <script src="js/table.js"></script>
 <script src="js/ipynbAdd.js"></script>

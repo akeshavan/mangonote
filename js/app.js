@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview',
-                                     'monospaced.elastic','xeditable',
+                                     'xeditable',
 									 'tableEdit','ipynbAdd','ui.bootstrap']);
 
 myApp.controller("SidebarCtrl", function($scope){
