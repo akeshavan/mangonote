@@ -119,10 +119,6 @@ myApp.controller("SidebarCtrl", function($scope){
 		console.log($scope.sidebars[idx_parent].content)
 	}
 
-	$scope.showTrash = function(){
-		$scope.showtrash=true
-	}
-
 	$scope.setAllInactive = function() {
 	        angular.forEach($scope.sidebars, function(sidebar) {
 	            sidebar.class = "";

@@ -42,7 +42,7 @@
   .directive('iiMdPreview', function() {
     return {
       templateUrl: "templates/md.html",
-      restrict: 'C',
+      restrict: 'E',
       replace: true,
       controller: 'Ctrl',
       scope: {markdown: '=ngModel'},
