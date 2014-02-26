@@ -17,6 +17,45 @@ myApp.controller("SidebarCtrl", function($scope){
       }
     });
 
+    $scope.load_note_handler = function(note){
+    	
+		console.log("in load note handler.")
+		
+	    foo = $.ajax({
+	    cache: false,
+	    url: "/load_note",
+	    dataType: "json",
+		type: "POST",
+	    success: function(data) {
+			$scope.list_of_files = data.notes
+			console.log($scope.list_of_files)
+			$scope.$apply()
+	      }
+	    })
+		
+		$("#myloadModal").modal("show")
+		
+    }
+
+    $scope.load = function(note){
+    	console.log(note)
+	    foo = $.ajax({
+	    cache: false,
+	    url: note,
+		//type: "POST",
+	    dataType: "json",
+	    success: function(data) {
+			console.log(foo)
+			data = foo.responseJSON
+			$scope.title = data.title;
+			$scope.sidebars = data.sidebars;
+			console.log($('#'+$scope.sidebars[0].href));
+			$scope.$apply()
+	      }
+	    });		
+		
+    }
+
     $scope.editorEnabled = false;
   
     $scope.enableEditor = function() {

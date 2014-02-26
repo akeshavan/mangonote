@@ -3,6 +3,7 @@ import tornado.web
 from os import path
 import os
 import json
+from glob import glob
 
 def save_json(filename, data):
     """Save data to a json file
@@ -67,6 +68,19 @@ class SaveHandler(tornado.web.RequestHandler):
         
         return
 
+class LoadHandler(tornado.web.RequestHandler):
+    
+    def get(self):
+        self.redirect('/', permanent=False)
+    
+    def post(self):
+        print "globbing files to load"
+        files_to_load=glob("static/*.json")
+        print {"notes":files_to_load}
+        self.write(json.dumps({"notes":files_to_load}))
+        #return json.dumps({"notes":filename})
+
+
 root = path.abspath('.')
 
 settings = {
@@ -83,6 +97,7 @@ settings = {
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/save_note",SaveHandler),
+    (r"/load_note",LoadHandler),
     (r"/js/(.*)",tornado.web.StaticFileHandler, {"path": os.path.join(root,"js")}),
     (r"/css/(.*)",tornado.web.StaticFileHandler, {"path": os.path.join(root,"css")}),
     (r"/img/(.*)",tornado.web.StaticFileHandler, {"path": os.path.join(root,"img")}),

@@ -67,7 +67,8 @@
         });
 		
   	  element.bind('dblclick', function() {
-          scope.enableEditor();
+          if (!scope.editorEnabled){scope.enableEditor()}
+		  else{scope.disableEditor()}
           scope.$apply();
         });
 		

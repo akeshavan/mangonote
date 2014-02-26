@@ -41,7 +41,7 @@
 				<br>
 			<li>
 			    <form action="#">
-			        <button class="btn btn-link navbar-btn">Load</button>
+			        <button class="btn btn-link navbar-btn" ng-click="load_note_handler()">Load</button>
 			    </form>
 			</li>
           </ul>
@@ -161,6 +161,31 @@
       </div>
     </div>
   </div>
+  
+  <!-- Load Modal -->
+  <div class="modal fade" id="myloadModal" tabindex="-1" role="dialog" aria-labelledby="myloadModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+  		  <div class="modal-content">
+  			    <div class="modal-header">
+  				      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  				      <h4 class="modal-title" id="myloadModalLabel">Load Note</h4>
+  			    </div>
+  			    <div class="modal-body">
+					<select ng-model="loadfile">
+				      <option ng-repeat="file in list_of_files" ng-model-instant value="{{file}}">
+  					    {{file}}
+				      </option>
+			        </select>
+  			    </div>
+  			    <div class="modal-footer">
+  				      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+  				      <button type="button" class="btn btn-primary" ng-click="load(loadfile)" data-dismiss="modal">Load</button>
+  			    </div>
+  		  </div>
+  	</div>
+  </div>
+
+
 
 </div>
 
@@ -176,9 +201,9 @@
 <script src="js/ui-bootstrap-tpls.min.js"></script>
 <script src="js/ui-bootstrap.min.js"></script>
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
-<script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script> 
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/app.js"></script>
 
