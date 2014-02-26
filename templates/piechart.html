@@ -1,0 +1,10 @@
+<div class="row-fluid" ng-init="chart=[{value: 10}, {value: 20}, {value: 30}]">
+	<div class="col-sm-6">
+		<button ng-click="chart.push({value: 10})">add slice</button>
+		<button ng-click="chart.pop()">remove slice</button>
+		<input type="range" ng-model="slice.value" ng-repeat="slice in chart track by $index">
+	</div>
+	<div class="col-sm-6">
+		<donut-chart data="chart" style="float:right"></donut-chart>
+	</div>
+</div>

@@ -34,11 +34,12 @@ myApp.controller("SidebarCtrl", function($scope){
     };
 
 	$scope.addSection = function (){
-		href = $scope.sectionName.replace(" ","-")
-		console.log(href)
+		href = $scope.sectionName.replace(" ","-");
+        console.log('adding section');
+		console.log(href);
 		$scope.sidebars.push({"title":$scope.sectionName, 
 		                       "href":href, 
-							   "content":[]})
+							   "content":[]});
 						   
 	}
 
@@ -70,6 +71,14 @@ myApp.controller("SidebarCtrl", function($scope){
 		$scope.sidebars[idx].content.push({type:"table", data:{names:["Edit"], vals:[["me"]]},class:""})
 	
 	}
+
+    $scope.addDonut = function(idx){
+        console.log("Donut added");
+        console.log($scope.sidebars[idx]);
+        console.log($scope.sidebars[idx].content);
+        $scope.sidebars[idx].content.push({type:"donutchart"});
+    
+    }
 
 	$scope.addipynb = function(idx){
 		console.log("ipynbadded")
@@ -431,4 +440,52 @@ myApp.directive('dndList', function() {
             axis:'y'
         })
     }
+});
+
+myApp.directive('donutBox', function(){
+    return {
+        restrict: 'E',
+        templateUrl: '/templates/piechart.html'
+    };
+});
+
+myApp.directive('donutChart', function(){
+    function link(scope, el, attr){
+        var color = d3.scale.category10();
+        var width = 200;
+        var height = 200;
+        var min = Math.min(width, height);
+        var svg = d3.select(el[0]).append('svg');
+        var pie = d3.layout.pie().sort(null);
+        var arc = d3.svg.arc()
+            .outerRadius(min / 2 * 0.9)
+            .innerRadius(min / 2 * 0.5);
+
+        pie.value(function(d){ return d.value; });
+
+        svg.attr({width: width, height: height});
+        var g = svg.append('g')
+          // center the donut chart
+          .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+        // add the <path>s for each arc slice
+        var arcs = g.selectAll('path');
+
+        scope.$watch('data', function(data){
+            arcs = arcs.data(pie(data));
+            arcs.enter().append('path')
+                .style('stroke', 'white')
+                .attr('fill', function(d, i){ return color(i) });
+            arcs.exit().remove();
+            arcs.attr('d', arc);
+        }, true);
+    };
+    return {
+        link: link,
+        restrict: 'E',
+        scope: { data: '=' },
+        controller: function($scope) {
+
+        }
+    };
 });
