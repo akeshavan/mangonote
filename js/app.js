@@ -60,14 +60,14 @@ myApp.controller("SidebarCtrl", function($scope){
 	$scope.addImage = function(idx){
 		console.log(idx)
 		console.log("add_image",$scope.sidebars[idx].content)
-		$scope.sidebars[idx].content.push({type:"image", data:""})
+		$scope.sidebars[idx].content.push({type:"image", data:{data:"",size:"100"}, class:""})
 	
 	}
 
 	$scope.addTable = function(idx){
 		console.log("Table added")
 		console.log($scope.sidebars[idx].content)
-		$scope.sidebars[idx].content.push({type:"table", data:{names:["Edit"], vals:[["me"]]}})
+		$scope.sidebars[idx].content.push({type:"table", data:{names:["Edit"], vals:[["me"]]},class:""})
 	
 	}
 
@@ -262,15 +262,15 @@ myApp.directive('imageDir', function(){
         scope.$apply();
       });
 
-	  if (!scope.data & scope.data != undefined){
+	  if (!scope.data.data & scope.data.data != undefined){
 		  scope.exist_uri = true;
-		  scope.data = "img/placeholder.png"
+		  scope.data.data = "img/placeholder.png"
 		  scope.data_tmp = "img/placeholder.png"
 	  }
 	  else{
 		  console.log("uri already exists")
 		  scope.exist_uri=true
-		  scope.data_tmp = scope.data
+		  scope.data_tmp = scope.data.data
 	  }
 	  
 	  scope.$watch("exist_uri", function(value) {
@@ -282,7 +282,7 @@ myApp.directive('imageDir', function(){
 
 	  scope.$watch("data", function(value) {
 		  if (!value && value != undefined){
-			  scope.data = "img/placeholder.png"
+			  scope.data.data = "img/placeholder.png"
 	              }
 			  });
 			  
