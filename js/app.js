@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview',
                                      'monospaced.elastic','xeditable',
-									 'tableEdit','ipynbAdd']);
+									 'tableEdit','ipynbAdd','ui.bootstrap']);
 
 myApp.controller("SidebarCtrl", function($scope){
 
@@ -79,8 +79,40 @@ myApp.controller("SidebarCtrl", function($scope){
 	}
 
 
+    $scope.addCarousel = function(idx){
+    	
+		console.log("carousel add")
+		$scope.sidebars[idx].content.push({
+			type:"carousel",
+			info:{
+				height:6000,
+				interval:5000,
+				data:[{image:"img/mangonote-logo-prototype.png",
+				caption:"Double click to edit"}],
+			}
+		})
+		
+    }
+
 	$scope.remove = function(idx_parent,idx){
 		$scope.sidebars[idx_parent].content.splice(idx,1)
+	}
+	
+	$scope.moveUp = function(idx_parent,idx){
+		if (idx){
+			tmp = $scope.sidebars[idx_parent].content[idx-1]
+			$scope.sidebars[idx_parent].content[idx-1] = $scope.sidebars[idx_parent].content[idx]
+			$scope.sidebars[idx_parent].content[idx] = tmp
+		}
+	}
+	
+	$scope.moveDown = function(idx_parent,idx){
+		console.log("moveDown",$scope.sidebars[idx_parent].content.length)
+		if (idx < $scope.sidebars[idx_parent].content.length){
+			tmp = $scope.sidebars[idx_parent].content[idx+1]
+			$scope.sidebars[idx_parent].content[idx+1] = $scope.sidebars[idx_parent].content[idx]
+			$scope.sidebars[idx_parent].content[idx] = tmp
+		}
 	}
 
 	$scope.showTrash = function(){
@@ -258,6 +290,107 @@ myApp.directive('imageDir', function(){
   };
 });
 
+
+myApp.directive('imgList', function(){
+  // The above name 'myDirective' will be parsed out as 'my-directive'
+  // for in-markup uses.
+  return {
+    // restrict to an element (A = attribute, C = class, M = comment)
+    // or any combination like 'EACM' or 'EC'
+    restrict: 'E',
+    scope: {
+      name: '@', // set the name on the directive's scope
+                    // to the name attribute on the directive element.
+	  info: '=ngModel',
+	  //exist_uri: '@'
+    },
+    //the template for the directive.
+    templateUrl: '/templates/carousel.html',
+    //the controller for the directive
+    controller: function($scope) {
+      
+	  $scope.addSlide = function(image,caption){
+		  $scope.info.data.push({image:image, caption:caption})
+	  }
+	  
+	  $scope.removeSlide = function(idx){$scope.info.data.splice(idx,1)}
+	  
+	  $scope.setFiles = function(element) {
+	      $scope.$apply(function(scope) {
+	        console.log('files:', element.files);
+	        // Turn the FileList object into an Array
+	          $scope.files = []
+	          for (var i = 0; i < element.files.length; i++) {
+	            $scope.files.push(element.files[i])
+	          }
+	        $scope.progressVisible = false
+			console.log($scope.files)
+			
+			var reader = new FileReader();
+			
+	        reader.onload = (function(theFile) {
+	          return function(e) {
+	            // Render thumbnail.
+	            
+	            console.log("data result: "+e.target.result)
+				$scope.data_upload = e.target.result
+
+	          };
+	        });//($scope.files[0]);
+
+	        // Read in the image file as a data URL.
+			for (var i = 0; i < $scope.files.length; i++) {
+		        reader.readAsDataURL($scope.files[i]);
+			}
+	      
+		  }
+	  
+			
+	        )
+	      };
+    },
+    replace: true, //replace the directive element with the output of the template.
+    //the link method does the work of setting the directive
+    // up, things like bindings, jquery calls, etc are done in here
+    link: function(scope, elem, attr) {
+      // scope is the directive's scope,
+      // elem is a jquery lite (or jquery full) object for the directive root element.
+      // attr is a dictionary of attributes on the directive element.
+
+	  elem.bind('dblclick', function() {
+        scope.exist_uri = false;
+        scope.$apply();
+      });
+
+	  if (!scope.data & scope.data != undefined){
+		  scope.exist_uri = true;
+		  scope.data = "img/placeholder.png"
+		  scope.data_tmp = "img/placeholder.png"
+	  }
+	  else{
+		  console.log("uri already exists")
+		  scope.exist_uri=true
+		  scope.data_tmp = scope.data
+	  }
+	  
+	  scope.$watch("exist_uri", function(value) {
+		  if (!value && value != undefined){
+			  console.log($("#"+scope.name))
+	          $("#"+scope.name).modal("show")
+	              }
+			  });
+
+	  scope.$watch("data", function(value) {
+		  if (!value && value != undefined){
+			  scope.data = "img/placeholder.png"
+	              }
+			  });
+			  
+    }
+  };
+});
+
+
 	
 // directive for a single list
 myApp.directive('dndList', function() {
@@ -278,47 +411,6 @@ myApp.directive('dndList', function() {
         // when the element is rendered
         $(element[0]).sortable({
             items:'li',
-            start:function (event, ui) {
-                // on start we define where the item is dragged from
-                startIndex = ($(ui.item).index());
-            },
-            stop:function (event, ui) {
-                // on stop we determine the new index of the
-                // item and store it there
-                var newIndex = ($(ui.item).index());
-                var toMove = toUpdate[startIndex];
-                toUpdate.splice(startIndex,1);
-                toUpdate.splice(newIndex,0,toMove);
- 
-                // we move items in the array, if we want
-                // to trigger an update in angular use $apply()
-                // since we're outside angulars lifecycle
-                scope.$apply(scope.model);
-            },
-            axis:'y'
-        })
-    }
-});
-
-
-myApp.directive('dndDiv', function() {
- 
-    return function(scope, element, attrs) {
- 
-        // variables used for dnd
-        var toUpdate;
-        var startIndex = -1;
- 
-        // watch the model, so we always know what element
-        // is at a specific position
-        scope.$watch(attrs.dndList, function(value) {
-            toUpdate = value;
-        },true);
- 
-        // use jquery to make the element sortable (dnd). This is called
-        // when the element is rendered
-        $(element[0]).sortable({
-            items:'div',
             start:function (event, ui) {
                 // on start we define where the item is dragged from
                 startIndex = ($(ui.item).index());

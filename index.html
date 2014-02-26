@@ -102,11 +102,17 @@
 			  for the IPython notebook render. If its a d3 thing, add a directive w/ the appropriate
 			  d3 template! (The d3 stuff can have a templateUrl so neeraj can drop in d3 templates!)
 			   -->
-			<div dnd-div="bar.content">
+			<div>
 			  <div ng-repeat="li in bar.content track by $index" ng-model-instant>
 				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
 					  <a href="#" ng-click="remove($parent.$index,$index)">
 						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
+					  </a>
+					  <a href="#" ng-click="moveUp($parent.$index,$index)">
+						  <span class="glyphicon glyphicon-arrow-up pull-left" ng-show="showtrash"></span>
+					  </a>
+					  <a href="#" ng-click="moveDown($parent.$index,$index)">
+						  <span class="glyphicon glyphicon-arrow-down pull-left" ng-show="showtrash"></span>
 					  </a>
 					  <div ng-if="li.type=='text'" ng-model="li.text" class='iiMdPreview' text="{{li.text}}">
 					  </div>
@@ -157,12 +163,14 @@
 <script src="js/xeditable.min.js"></script>
 <script src="js/table.js"></script>
 <script src="js/ipynbAdd.js"></script>
-<script src="js/app.js"></script>
+<script src="js/ui-bootstrap-tpls.min.js"></script>
+<script src="js/ui-bootstrap.min.js"></script>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
 <script src="https://lucius-c-smith-diaries.googlecode.com/svn-history/r330/trunk/LCSmith-HTML-CSS/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
-
+<script src="js/app.js"></script>
 <script>
 // Synchronous highlighting with highlight.js
 marked.setOptions({
