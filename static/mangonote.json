@@ -2,7 +2,7 @@
     "sidebars": [
         {
             "$$hashKey": "004", 
-            "class": "active", 
+            "class": "", 
             "content": [
                 {
                     "$$hashKey": "00D", 
@@ -23,6 +23,7 @@
                     "type": "text"
                 }, 
                 {
+                    "$$hashKey": "00A", 
                     "class": "", 
                     "data": {
                         "data": "img/mangonote-logo-prototype.png", 
@@ -41,36 +42,19 @@
                 {
                     "$$hashKey": "00L", 
                     "class": "", 
-                    "text": "## I just added this section!\n\nWill the cache work?\n\n####The cache works!!", 
-                    "type": "text"
-                }, 
-                {
-                    "$$hashKey": "00N", 
-                    "class": "", 
-                    "text": "###[This is a link to google!](http://www.google.com)\n\n\n###Here are results from the study on Social Anxiety Disorder:", 
-                    "type": "text"
-                }, 
-                {
-                    "$$hashKey": "011", 
-                    "class": "", 
-                    "text": "##I designed this spacecraft to orbit the sun:", 
-                    "type": "text"
-                }, 
-                {
-                    "$$hashKey": "019", 
-                    "class": "", 
-                    "text": "I got an A in that class.", 
+                    "text": "We need to test each feature of mangonote each time we add a feature! Here are a list of the mangonote features to address:\n\n* Switch order of the sections by clicking and dragging\n* Change section name by clicking on title at the top of the page\n* Delete and add a section\n* Double click text to edit, shift+enter to save and exit edit mode\n* Change the order of content within a section (arrows)\n* Add an image with a link\n* Add an image with an upload\n* Change the size of an image\n* Add a table\n* Add an iframe\n* Delete a content item (trash can)", 
                     "type": "text"
                 }
             ], 
             "href": "New-Section", 
-            "title": "New Section"
+            "title": "Testing"
         }, 
         {
             "$$hashKey": "015", 
-            "class": "", 
+            "class": "active", 
             "content": [
                 {
+                    "$$hashKey": "00Y", 
                     "data": {
                         "names": [
                             "name", 
