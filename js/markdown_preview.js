@@ -45,7 +45,8 @@
       restrict: 'E',
       replace: true,
       controller: 'Ctrl',
-      scope: {markdown: '=ngModel'},
+      scope: {markdown: '=ngModel', 
+	          class:"@"},
       link: function(scope, element, attrs) {
         if (attrs.url) {
           scope.initFromUrl(attrs.url);

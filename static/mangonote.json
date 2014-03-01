@@ -6,7 +6,7 @@
             "content": [
                 {
                     "$$hashKey": "00D", 
-                    "class": "", 
+                    "class": "bs-callout bs-callout-danger", 
                     "text": "###MangoNote is an flexible notebook with d3 visualizations", 
                     "type": "text"
                 }, 

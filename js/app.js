@@ -352,6 +352,7 @@ myApp.directive('imgList', function(){
       name: '@', // set the name on the directive's scope
                     // to the name attribute on the directive element.
 	  info: '=ngModel',
+	  class:'@'
 	  //exist_uri: '@'
     },
     //the template for the directive.

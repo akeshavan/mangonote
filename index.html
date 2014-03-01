@@ -93,6 +93,9 @@
 				  <li><a href="#" ng-click="addipynb($index)">iPython Notebook</a></li>
 			    </ul>
 			  </div>
+		    <button type="button" class="btn btn-warning" ng-click="showtrash=!showtrash">
+				Edit
+		    </button>
 			  <button class="btn btn-danger pull-right" ng-click=deleteSection($index)>Delete</button>
 			  <!--<button class="btn btn-primary" ng-click="recordId($index)">Add Content</button>-->
 			  
@@ -100,29 +103,30 @@
 
 			
 			  <div ng-repeat="li in bar.content" ng-model-instant>
-				  <div ng-mouseover="showtrash=true" ng-mouseout="showtrash=false">
+				  <div>
 					  <!-- MoveUp,MoveDown, and Trash -->
 					  <a href="#" ng-click="remove(sectionIndex,$index)">
-						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash"></span>
+						  <span class="glyphicon glyphicon-trash pull-right" ng-show="showtrash" style="zindex:-1"></span>
 					  </a>
 					  <a href="#" ng-click="moveUp(sectionIndex,$index)">
-						  <span class="glyphicon glyphicon-arrow-up pull-left" ng-show="showtrash"></span>
+						  <span class="glyphicon glyphicon-arrow-up pull-left" ng-show="showtrash" style="zindex:-1"></span>
 					  </a>
 					  <a href="#" ng-click="moveDown(sectionIndex,$index)">
-						  <span class="glyphicon glyphicon-arrow-down pull-left" ng-show="showtrash"></span>
+						  <span class="glyphicon glyphicon-arrow-down pull-left" ng-show="showtrash" style="zindex:-1"></span>
 					  </a>
-					  
+					  <input type="text" ng-model="li.class" ng-show="showtrash">
+
 					  <!-- Text -->
-					  <ii-md-preview ng-if="li.type=='text'" ng-model="li.text" text="{{li.text}}">
+					  <ii-md-preview ng-if="li.type=='text'" ng-model="li.text" text="{{li.text}}" class="{{li.class}}">
 					  </ii-md-preview>
 					  
 					  <!-- Image -->
 					  <image-dir ng-if="li.type=='image'" ng-model="li.data"
-					   name="image_{{sectionIndex}}_{{$index}}">
+					   name="image_{{sectionIndex}}_{{$index}}" class="{{li.class}}">
 					  </image-dir>
 					  
 					  <!-- Table -->
-					  <tabler ng-if="li.type=='table'" ng-model="li.data" name="table_{{sectionIndex}}_{{$index}}">
+					  <tabler ng-if="li.type=='table'" ng-model="li.data" name="table_{{sectionIndex}}_{{$index}}" class="{{li.class}}">
 					  </tabler>
 					  
 					  <!-- iFrame -->
