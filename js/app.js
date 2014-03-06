@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', ['ngSanitize','evgenyneu.markdown-preview',
 
 myApp.controller("SidebarCtrl", function($scope){
 
-    foo = $.ajax({
+/*    foo = $.ajax({
     cache: false,
     url: "/static/mangonote.json",
     dataType: "json",
@@ -16,6 +16,12 @@ myApp.controller("SidebarCtrl", function($scope){
 		console.log($('#'+$scope.sidebars[0].href));
       }
     });
+*/
+
+    $.getJSON("static/mangonote.json", function(data){
+        $scope.title=data["title"]
+        $scope.sidebars=data["sidebars"]
+        })
 
     $scope.load_note_handler = function(note){
     	
