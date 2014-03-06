@@ -270,7 +270,7 @@ myApp.directive('imageDir', function(){
 	  //exist_uri: '@'
     },
     //the template for the directive.
-    templateUrl: '/templates/img.html',
+    templateUrl: 'templates/img.html',
     //the controller for the directive
     controller: function($scope) {
 
@@ -493,7 +493,7 @@ myApp.directive('dndList', function() {
 myApp.directive('donutBox', function(){
     return {
         restrict: 'E',
-        templateUrl: '/templates/piechart.html'
+        templateUrl: 'templates/piechart.html'
     };
 });
 
